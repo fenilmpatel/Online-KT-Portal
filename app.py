@@ -7,7 +7,7 @@ def home():
     return render_template('index1.html',title='Home')
 import db
 con,cur = db.tbl_con() 
-@app.route('/insert',methods=['POST'])
+@app.route('/insert',methods=['GET'])
 # def predict():
     # '''For rendering results on HTML GUI
     # '''
@@ -26,9 +26,9 @@ def insert():
         Project  = request.form['Project']
         Query = request.form['Query']
         data = (Emp_Id,Name,Project,Query)
-        Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
+        # Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
         #insert data to table
-        cur.execute(Qry,data)
+        # cur.execute(Qry,data)
         return "data inserted successfully.."
     finally:
         con.commit()
