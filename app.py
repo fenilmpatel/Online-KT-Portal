@@ -1,10 +1,9 @@
 from flask import Flask,render_template,url_for,request
 import os
 app = Flask(__name__)
-import employee
+
 @app.route('/')
 def home():
-
     return render_template('index1.html',title='Home')
 import db
 con,cur = db.tbl_con() 
@@ -30,7 +29,7 @@ def insert():
         Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
         #insert data to table
         cur.execute(Qry,data)
-        print("data inserted successfully..")
+        return "data inserted successfully.."
     finally:
         con.commit()
         cur.close()
