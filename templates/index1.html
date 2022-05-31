@@ -1,0 +1,29 @@
+{% extends "layout01.html" %}
+{% block temp %}
+
+<div class="content-section">
+    <div class="row">
+        <div class="mx-auto" style="width: 180pt;">
+        
+            <div class="form-group">
+                    <form method="POST" action="{{ url_for('insert')}}">
+                        <input type="text" name="Emp_Id" class="form-control" placeholder="Emp_Id" required="required" /><br><br>
+                        <input type="text" name="Name" class="form-control" placeholder = "Name"required="required" /><br><br>
+                        <input type="text" name="Project" class="form-control" placeholder="Project name" required="required" /><br><br>
+                        <input type="text" name="Query" class="form-control" placeholder="Enter your Query" required="required" /><br><br>
+                    
+                        <button type="submit" class="btn btn-primary btn-block btn-block">Insert</button>
+                    
+            
+                        
+                    </form>
+            </div>
+        </div>
+    </div> 
+    
+</div>
+
+    <br>
+   <br>
+   
+{% endblock temp %}

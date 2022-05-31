@@ -4,12 +4,15 @@ con,cur = db.tbl_con()
 
 def insert():
     try:
-        E = input("Enter your emp id")
-        N   = input("Enter Your Name")
-        P = input("Enter your project name")
-        Q  = input("Write your query")
-        
-        data = (E,N,P,Q)
+        # E = input("Enter your emp id")
+        # N   = input("Enter Your Name")
+        # P = input("Enter your project name")
+        # Q  = input("Write your query")
+        Emp_Id = request.form['Emp_Id']
+        Name = request.form['Name']
+        Project  = request.form['Project']
+        Query = request.form['Query']
+        data = (Emp_Id,Name,Project,Query)
         Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
         #insert data to table
         cur.execute(Qry,data)
@@ -35,5 +38,5 @@ def show():
         con.commit()
         cur.close()
         con.close()
-show()
+# show()
 # insert()
