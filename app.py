@@ -5,6 +5,7 @@ import database
 #initialize flask app
 app = Flask(__name__)
 con,cur = database.tbl_con() 
+database.table()
 
 
 #Set home page
