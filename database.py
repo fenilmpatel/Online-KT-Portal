@@ -39,19 +39,19 @@ def database():
             print("Transaction closed")
             
 #creating  table into database 
-def table():
-    try:
+# def table():
+#     try:
     
-        #create a connection to database
-        con,cur = tbl_con()
+#         #create a connection to database
+#         con,cur = tbl_con()
               
-        #create a new table
-        cur.execute("CREATE TABLE IF NOT EXISTS employee (Emp_id numeric(10), Name VARCHAR(40), Project VARCHAR(40), Query VARCHAR(80));")
-        print("Table created successfully")
-    finally:
-        con.commit()
-        cur.close()
-        con.close()
+#         #create a new table
+#         cur.execute("CREATE TABLE IF NOT EXISTS employee (Emp_id numeric(10), Name VARCHAR(40), Project VARCHAR(40), Query VARCHAR(80));")
+#         print("Table created successfully")
+#     finally:
+#         con.commit()
+#         cur.close()
+#         con.close()
         
 # database()
 # table()
