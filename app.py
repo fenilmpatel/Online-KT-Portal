@@ -1,13 +1,19 @@
 from flask import Flask,render_template,url_for,request
+import database
 import os
-app = Flask(__name__)
 
+
+#initialize flask app
+app = Flask(__name__)
+con,cur = database.tbl_con() 
+
+
+#Set home page
 @app.route('/')
 def home():
     return render_template('index1.html',title='Home')
-import db
-con,cur = db.tbl_con() 
-@app.route('/insert',methods=['GET'])
+
+@app.route('/insert',methods=['POST'])
 # def predict():
     # '''For rendering results on HTML GUI
     # '''
@@ -26,9 +32,9 @@ def insert():
         Project  = request.form['Project']
         Query = request.form['Query']
         data = (Emp_Id,Name,Project,Query)
-        # Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
+        Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
         #insert data to table
-        # cur.execute(Qry,data)
+        cur.execute(Qry,data)
         return "data inserted successfully.."
     finally:
         con.commit()
@@ -47,6 +53,4 @@ def insert():
     #     output = "Fraud"
     #     return render_template('prediction.html', prediction_text=f'Prediction For Applied Person is {output} Person!!')
 # employee.insert()   
-port = int(os.environ.get('PORT',5000))
-if __name__ == "__main__":
-    app.run(debug=1,host='0.0.0.0',port=port) # or True             
+ # or True             

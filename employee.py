@@ -1,6 +1,7 @@
-import psycopg2 as db
-import db
-con,cur = db.tbl_con()   
+import psycopg2 as database
+from flask import Flask,render_template,url_for,request
+import database
+con,cur = database.tbl_con()   
 
 def insert():
     try:
@@ -38,5 +39,5 @@ def show():
         con.commit()
         cur.close()
         con.close()
-# show()
+show()
 # insert()
