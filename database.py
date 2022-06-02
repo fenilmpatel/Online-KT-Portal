@@ -13,15 +13,16 @@ def db_con():
     con.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     return con
 #connection variable for creating table on heroku   
-# def tbl_con():
-#     con = db.connect(user=usr,password=pword,host=host,database=dbase,)
-#     cur = con.cursor()
-#     return con,cur
-#connection variable for creating table on local    
 def tbl_con():
-    con = db.connect(database="Portal",user="fenil",password="fenilpatel@123",host="localhost",port=5432)
+    con = db.connect(user=usr,password=pword,host=host,database=dbase,)
     cur = con.cursor()
     return con,cur
+
+#connection variable for creating table on local    
+# def tbl_con():
+#     con = db.connect(database="Portal",user="fenil",password="fenilpatel@123",host="localhost",port=5432)
+#     cur = con.cursor()
+#     return con,cur
 
 #creating new database 
 def database():
@@ -54,4 +55,4 @@ def table():
         con.close()
         
 # database()
-table()
+# table()

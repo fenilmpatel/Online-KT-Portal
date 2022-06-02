@@ -1,32 +1,22 @@
 from flask import Flask,render_template,url_for,request
 import psycopg2 as db
-import database
+from database import table,tbl_con
 
 
 #initialize flask app
 app = Flask(__name__)
-con,cur = database.tbl_con() 
+con,cur = tbl_con() 
 
 
 #Set home page
 @app.route('/')
 def home():
     return render_template('index1.html',title='Home')
-# database.table()
+table()
 
 @app.route('/insert',methods=['POST'])
-# def predict():
-    # '''For rendering results on HTML GUI
-    # '''
-    # Emp_Id = request.form['Emp_Id']
-    # Name = request.form['Name']
-    # Project  = request.form['Project']
-    # contact = request.form['Query']
-
 def insert():
-    
     try:
-    
         Emp_Id = request.form['Emp_Id']
         Name = request.form['Name']
         Project  = request.form['Project']
@@ -37,9 +27,11 @@ def insert():
         cur.execute(Qry,data)
         con.commit()
         return "data inserted successfully.."
+    
     except db.Error as e:
 
         print(e)
+        
     cur.close()
     con.close()
         
