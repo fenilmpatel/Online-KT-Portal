@@ -2,20 +2,13 @@
 {% extends "layout01.html" %}
 {% block temp %}
 
+{% for d in data %}
+    <div class="content-section">
+        <h3>{{d[0]}} - {{d[1]}} - {{d[2]}} - {{d[3]}}</h3>
 
-<div class="content-section">
-{% if prediction_text=='Prediction For Applied Person is Genuine Person.' %} 
-    <div class="alert alert-success" role="alert">
-        <h5>Prediction For Applied Person is Genuine Person.</h5>
+
     </div>
-{% else %}
-
-        <div class="alert alert-danger">
-        <h5>Prediction For Applied Person is Fraud Person.</h5>
-    </div>
-
-{% endif %}  
-</div>
+{% endfor %}
 
 
 

@@ -2,7 +2,6 @@ from flask import Flask,render_template,url_for,request
 import psycopg2 as db
 from database import table,tbl_con
 
-
 #initialize flask app
 app = Flask(__name__)
 con,cur = tbl_con() 
@@ -12,7 +11,6 @@ con,cur = tbl_con()
 @app.route('/')
 def home():
     return render_template('index1.html',title='Home')
-table()
 
 @app.route('/insert',methods=['POST'])
 def insert():
@@ -22,7 +20,7 @@ def insert():
         Project  = request.form['Project']
         Query = request.form['Query']
         data = (Emp_Id,Name,Project,Query)
-        Qry  = "INSERT INTO emp(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
+        Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
         #insert data to table
         cur.execute(Qry,data)
         con.commit()
@@ -34,7 +32,23 @@ def insert():
         
     cur.close()
     con.close()
-        
+
+@app.route('/view',methods=['GET'])
+def view():
+    try:
+    
+        #create a connection to database
+        con,cur = tbl_con()
+              
+        #create a new table
+        cur.execute("SELECT * FROM employee")
+        data = cur.fetchall()
+    except db.DatabaseError as e:
+        print(e)
+    con.close()
+    cur.close()
+    con.close()
+    return render_template('prediction.html',data=data)        
     
         
         
