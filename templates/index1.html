@@ -17,17 +17,26 @@
             
                         
                     </form>
-                    <br>
+            </div>
+            <br>
             <div class="form-group">
-                    <form method="POST" action="{{ url_for('view')}}">
-                          
-                        
-                          <button type="submit" class="btn btn-primary btn-block btn-block">View</button>
-                        
+                <form method="POST" action="{{ url_for('view')}}">
+                      
+                    
+                      <button type="submit" class="btn btn-primary btn-block btn-block">View</button>
+     
+                </form>
+            </div>
+            <br>
+            <div class="form-group">
                 
-                            
-                    </form>
-                </div>
+                <form method="POST" action="{{ url_for('find')}}">
+                      
+                      <input type="text" name="Emp" class="form-control" placeholder="Enter your Emp_Id" required="required" /><br>
+                      
+                      <button type="submit" class="btn btn-primary btn-block btn-block">Search</button>
+     
+                </form>
             </div>
         </div>
     </div> 

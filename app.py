@@ -2,7 +2,7 @@ from urllib import response
 from flask import Flask,render_template,url_for,request
 from werkzeug.exceptions import HTTPException
 import psycopg2 as db
-from database import table,tbl_con
+from database import tbl_con
 
 #initialize flask app
 app = Flask(__name__)
@@ -33,7 +33,7 @@ def insert():
     cur.close()
     con.close()
     
-@app.route('/view',methods=['POST'])
+@app.route('/view',methods=['GET','POST'])
 def view():
     try:
     
@@ -42,6 +42,7 @@ def view():
               
         #create a new table
         cur.execute("SELECT * FROM employee")
+        con.commit()
         data = cur.fetchall()
         return render_template('view.html',data=data)
     except db.DatabaseError as e:
@@ -49,7 +50,27 @@ def view():
     con.close()
     cur.close()
     con.close()
-    # return render_template('view.html',data=data)        
+    
+@app.route('/find',methods=['GET','POST'])
+def find():
+    try:
+    
+        #create a connection to database
+        con,cur = tbl_con()
+        qry =  "SELECT * FROM employee where emp_id=%s"
+        Emp_Id = request.form['Emp']
+        data = (Emp_Id,)
+        #create a new table
+        cur.execute(qry,data)
+        con.commit()
+        search = cur
+        return render_template('view.html',search=search)
+    except db.DatabaseError as e:
+        print(e)
+    con.close()
+    cur.close()
+    con.close()
+         
 @app.errorhandler(HTTPException)
 def handle_exception(e):
     if isinstance(e,HTTPException):
