@@ -1,4 +1,3 @@
-from urllib import response
 from flask import Flask,render_template,url_for,request
 from werkzeug.exceptions import HTTPException
 import psycopg2 as db
@@ -60,10 +59,9 @@ def find():
         qry =  "SELECT * FROM employee where emp_id=%s"
         Emp_Id = request.form['Emp']
         data = (Emp_Id,)
-        #create a new table
         cur.execute(qry,data)
-        con.commit()
         search = cur
+        con.commit()
         return render_template('view.html',search=search)
     except db.DatabaseError as e:
         print(e)
@@ -81,15 +79,14 @@ def delete():
         qry2 = "SELECT * FROM employee"
         Emp_Id = request.form['Emp']
         data = (Emp_Id,)
-        #create a new table
         cur.execute(qry1,data)
-        con.commit()
         rm = cur.rowcount
+        # con.commit()
         cur.execute(qry2)
         tbl = cur.fetchall()
         con.commit()
-        
         return render_template('view.html',rm=rm,tbl=tbl)
+    
     except db.DatabaseError as e:
         print(e)
     con.close()
@@ -112,13 +109,11 @@ def update():
         data = (Emp_Id,Name,Project,Query,Old_Emp_Id)
     
         cur.execute(qry1,data)
-        con.commit()
-        
         cur.execute(qry2)
-        tbl = cur.fetchall()
+        upi = cur.fetchall()
         con.commit()
         
-        return render_template('view.html',tbl=tbl)
+        return render_template('view.html',upi=upi)
     except db.DatabaseError as e:
         print(e)
     con.close()
@@ -129,7 +124,6 @@ def handle_exception(e):
     if isinstance(e,HTTPException):
         return e
 
-    
 
     
         

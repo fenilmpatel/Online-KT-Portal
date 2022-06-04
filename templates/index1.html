@@ -13,9 +13,6 @@
                         <input type="text" name="Query" class="form-control" placeholder="Enter your Query" required="required" /><br><br>
                     
                         <button type="submit" class="btn btn-primary btn-block btn-block">Insert</button>
-                    
-            
-                        
                     </form>
             </div>
             <br>
@@ -24,7 +21,6 @@
                       
                     
                       <button type="submit" class="btn btn-primary btn-block btn-block">View</button>
-     
                 </form>
             </div>
             <br>
@@ -32,7 +28,8 @@
                 
                 <form method="POST" action="{{ url_for('find')}}">
                       
-                      <input type="text" name="Emp" class="form-control" placeholder="Enter your Emp_Id" required="required" /><br>
+                      <input type="text" name="Emp" class="form-control" placeholder="Search employee by Emp_Id"/><br>
+                      <input type="text" name="Name" class="form-control" placeholder = "Search employee by Name"  /><br>
                       
                       <button type="submit" class="btn btn-primary btn-block btn-block">Search</button>
      
@@ -44,9 +41,7 @@
                 
                 
                     <button type="submit" class="btn btn-primary btn-block btn-block">Delete</button>
-                
-        
-                    
+
                 </form>
             </div>
             <br>
@@ -61,9 +56,6 @@
                     <button type="submit" class="btn btn-primary btn-block btn-block">Update</button>
                 </form>
             </div>
-
-
-
 
         </div>
         
