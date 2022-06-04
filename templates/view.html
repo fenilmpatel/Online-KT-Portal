@@ -20,6 +20,21 @@
     </div> 
     
 </div> -->
+{%if rm==0%}
+    <h3>Removed {{rm}} row's from employee</h3>
+    {% for t in tbl %}
+    <div class="content-section">
+        <h3>{{t[0]}} - {{t[1]}} - {{t[2]}} - {{t[3]}}</h3>
+    </div>
+    {% endfor %}
+{%else%}
+    <h3>Removed {{rm}} row's from employee</h3>
+    {% for t in tbl %}
+    <div class="content-section">
+        <h3>{{t[0]}} - {{t[1]}} - {{t[2]}} - {{t[3]}}</h3>
+    </div>
+    {% endfor %}
+{%endif%}
 
 {% for d in data %}
     <div class="content-section">
@@ -36,6 +51,8 @@
 
     </div>
 {% endfor %}
+
+
  
 {% endblock temp %}
 
