@@ -1,0 +1,33 @@
+
+{% extends "layout01.html" %}
+{% block temp %}
+<!-- 
+<div class="content-section">
+    <div class="row">
+        <div class="mx-auto" style="width: 180pt;">
+        
+            <div class="form-group">
+                    <form method="POST" action="{{ url_for('view')}}">
+                      
+                    
+                        <button type="submit" class="btn btn-primary btn-block btn-block">View</button>
+                    
+            
+                        
+                    </form>
+            </div>
+        </div>
+    </div> 
+    
+</div> -->
+
+{% for d in data %}
+    <div class="content-section">
+        <h3>{{d[0]}} - {{d[1]}} - {{d[2]}} - {{d[3]}}</h3>
+
+
+    </div>
+{% endfor %}
+ 
+{% endblock temp %}
+

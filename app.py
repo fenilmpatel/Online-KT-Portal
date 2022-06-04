@@ -25,15 +25,15 @@ def insert():
         Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
         #insert data to table
         cur.execute(Qry,data)
+        con.commit()
         return "data inserted successfully.."
-    
-    except db.Error as e:
-
+    except db.DatabaseError as e:
         print(e)
     con.commit()    
     cur.close()
     con.close()
-@app.route('/view',methods=['GET'])
+    
+@app.route('/view',methods=['POST'])
 def view():
     try:
     
@@ -43,16 +43,18 @@ def view():
         #create a new table
         cur.execute("SELECT * FROM employee")
         data = cur.fetchall()
+        return render_template('view.html',data=data)
     except db.DatabaseError as e:
         print(e)
     con.close()
     cur.close()
     con.close()
-    return render_template('prediction.html',data=data)        
+    # return render_template('view.html',data=data)        
 @app.errorhandler(HTTPException)
 def handle_exception(e):
     if isinstance(e,HTTPException):
         return e
+
     
 
     

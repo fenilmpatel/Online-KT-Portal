@@ -47,15 +47,11 @@ def table():
         con,cur = tbl_con()
               
         #create a new table
-        cur.execute("CREATE TABLE IF NOT EXISTS employee(Emp_id numeric(10), Name VARCHAR(40), Project VARCHAR(40), Query VARCHAR(80));")
+        cur.execute("CREATE TABLE IF NOT EXISTS employee(Emp_id VARCHAR(10), Name VARCHAR(40), Project VARCHAR(40), Query VARCHAR(80));")
         print("Table created successfully")
     finally:
         con.commit()
         cur.close()
         con.close()
         
-
-# view()
-        
-# database()
 table()
