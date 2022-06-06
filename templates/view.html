@@ -1,33 +1,21 @@
-
-{% extends "layout01.html" %}
+{% extends "layout.html" %}
 {% block temp %}
-
-{% if rm %}
-    <h3>removed {{rm}} row's from employee</h3> 
-{% endif %}
-{% for t in tbl %}
-    <div class="content-section">
-        <h3>{{t[0]}} - {{t[1]}} - {{t[2]}} - {{t[3]}}</h3>
-    </div>
-{% endfor %}
-{% for u in upi %}
-    <div class="content-section">
-        <h3>{{u[0]}} - {{u[1]}} - {{u[2]}} - {{u[3]}}</h3>
-    </div>
-{% endfor %}
-{% for d in data %}
-    <div class="content-section">
-        <h3>{{d[0]}} - {{d[1]}} - {{d[2]}} - {{d[3]}}</h3>
-    </div>
-{% endfor %}
-
-{% for s in search %}
-
-    <div class="content-section">
-        <h3>{{s[0]}} - {{s[1]}} - {{s[2]}} - {{s[3]}}</h3>
-    </div>
-
-{% endfor %}
-
-{% endblock temp %}
-
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Emp Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Project</th>
+        <th scope="col">Query</th>
+      </tr>
+    </thead>
+    <tbody>
+{%for d in data%}
+     <tr>   
+         <th scope="col">{{d[0]}}</th>
+         <th scope="col">{{d[1]}}</th>
+         <th scope="col">{{d[2]}}</th>
+         <th scope="col">{{d[3]}}</th>
+{%endfor%}
+     </tr>
+{%endblock temp%}
