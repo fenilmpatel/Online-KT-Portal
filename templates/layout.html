@@ -44,7 +44,7 @@
       <nav id="navbar" class="navbar">
         <ul>
       
-          <li><a class="nav-link scrollto" href="#">Raise</a></li>
+          <li><a class="nav-link scrollto" href="{{url_for('insert')}}">Raise</a></li>
           <li><a class="nav-link scrollto" href="{{url_for('view')}}">View</a></li>
           <li><a class="nav-link   scrollto" href="#">Update</a></li>
           <li><a class="nav-link scrollto" href="#">Delete</a></li>
@@ -65,7 +65,7 @@
 
         <ol>
           <li><a href="{{url_for('home')}}">Home</a></li>
-          <li>View Query</li>
+          <li>Back to home</li>
         </ol>
         <h2>Query Page</h2>
       </div>
@@ -73,17 +73,8 @@
     </section><!-- End Breadcrumbs -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-
-        <div class="d-flex justify-content-center">
-          <div class="form-group">
-            <form method="POST" action="{{ url_for('run_view')}}">
-                  
-                
-                  <button type="submit" class="btn btn-primary btn-block btn-block">View</button>
-            </form>
-          </div>
-        </div>
-        {% block temp %}{% endblock temp %}
+        {% block insert %}{% endblock insert %}
+        {% block view %}{% endblock view %}
     
       </div>
     </section>

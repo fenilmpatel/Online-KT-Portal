@@ -13,24 +13,28 @@ con,cur = tbl_con()
 def home():
     return render_template('index.html')
 
-# @app.route('/insert',methods=['POST'])
-# def insert():
-#     try:
-#         Emp_Id = request.form['Emp_Id']
-#         Name = request.form['Name']
-#         Project  = request.form['Project']
-#         Query = request.form['Query']
-#         data = (Emp_Id,Name,Project,Query)
-#         Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
-#         #insert data to table
-#         cur.execute(Qry,data)
-#         con.commit()
-#         return "data inserted successfully.."
-#     except db.DatabaseError as e:
-#         print(e)
-#     con.commit()    
-#     cur.close()
-#     con.close()
+@app.route('/insert',methods=['GET','POST'])
+def insert():
+    return render_template('insert.html')
+@app.route('/run_insert',methods=['GET','POST'])
+def run_insert():
+    try:
+        Emp_Id = request.form['Emp_Id']
+        Name = request.form['Name']
+        Project  = request.form['Project']
+        Query = request.form['Query']
+        data = (Emp_Id,Name,Project,Query)
+        Qry  = "INSERT INTO employee(Emp_id,Name,Project,Query) VALUES (%s,%s,%s,%s)"
+        #insert data to table
+        cur.execute(Qry,data)
+        con.commit()
+        data = 1
+        return render_template("insert.html",data=data)
+    except db.DatabaseError as e:
+        pass
+    con.commit()    
+    cur.close()
+    con.close()
     
 @app.route('/view',methods=['GET','POST'])
 def view():
