@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block update %}
+{% if flag=='true'%}
+    <div class="alert alert-primary" role="alert">
+        updated record's Successfully...
+    </div>
+    
+{% endif %}
+{%if flag=='false'%}
+    <div class="row">  
+        <div class="mx-auto" style="width: 220pt;">
+            <div class="form-group">
+                <form method="POST" action="{{ url_for('run_update')}}">
+                    <input type="text" name="Old_Emp_Id" class="form-control" placeholder="Enter Old Employee Id" required="required" /><br><br>
+                    <input type="text" name="Emp_Id" class="form-control" placeholder="Enter new Employee Id" required="required" /><br><br>
+                    <input type="text" name="Name" class="form-control" placeholder = "Enter new Name" required="required" /><br><br>
+                    <input type="text" name="Project" class="form-control" placeholder="Enter new Project name" required="required" /><br><br>
+                    <input type="text" name="Query" class="form-control" placeholder="Enter your updated Query" required="required" /><br><br>
+                
+                    <button type="submit" class="btn btn-primary btn-block btn-block">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{%endif%}
+{% endblock update %}

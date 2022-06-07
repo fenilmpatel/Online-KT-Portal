@@ -1,24 +1,26 @@
 {% extends "layout.html" %}
 {% block insert %}
-{%if data==1%}
+{%if flag=='true'%}
         <div class="alert alert-primary" role="alert">
           Data Inserted Successfully...
         </div>
-        {%endif%}
-<div class="row">
-    
-    <div class="mx-auto" style="width: 220pt;">
+{%endif%}
+{%if flag=='false'%}
+    <div class="row">
         
-        <div class="form-group">
-                <form method="POST" action="{{ url_for('run_insert')}}">
-                    <input type="text" name="Emp_Id" class="form-control" placeholder="Enter your Employee Id" required="required" /><br><br>
-                    <input type="text" name="Name" class="form-control" placeholder = "Enter your Name"required="required" /><br><br>
-                    <input type="text" name="Project" class="form-control" placeholder="Enter your Project name" required="required" /><br><br>
-                    <input type="text" name="Query" class="form-control" placeholder="Enter your Query" required="required" /><br><br>
-                
-                    <button type="submit" class="btn btn-primary btn-block btn-block">Insert</button>
-                </form>
+        <div class="mx-auto" style="width: 220pt;">
+            
+            <div class="form-group">
+                    <form method="POST" action="{{ url_for('run_insert')}}">
+                        <input type="text" name="Emp_Id" class="form-control" placeholder="Enter your Employee Id" required="required" /><br><br>
+                        <input type="text" name="Name" class="form-control" placeholder = "Enter your Name"required="required" /><br><br>
+                        <input type="text" name="Project" class="form-control" placeholder="Enter your Project name" required="required" /><br><br>
+                        <input type="text" name="Query" class="form-control" placeholder="Enter your Query" required="required" /><br><br>
+                    
+                        <button type="submit" class="btn btn-primary btn-block btn-block">Insert</button>
+                    </form>
+            </div>
         </div>
     </div>
-</div>
+{%endif%}
 {% endblock insert %}

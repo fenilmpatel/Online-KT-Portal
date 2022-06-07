@@ -1,3 +1,6 @@
+from itertools import count
+from pickle import TRUE
+from sys import flags
 from flask import Flask,render_template,url_for,request
 from werkzeug.exceptions import HTTPException
 import psycopg2 as db
@@ -15,7 +18,8 @@ def home():
 
 @app.route('/insert',methods=['GET','POST'])
 def insert():
-    return render_template('insert.html')
+    flag ='false'
+    return render_template('insert.html',flag=flag)
 @app.route('/run_insert',methods=['GET','POST'])
 def run_insert():
     try:
@@ -28,13 +32,14 @@ def run_insert():
         #insert data to table
         cur.execute(Qry,data)
         con.commit()
-        data = 1
-        return render_template("insert.html",data=data)
+        flag = 'true'
+        con.commit()    
+        cur.close()
+        con.close()
+        return render_template("insert.html",flag=flag)
     except db.DatabaseError as e:
-        pass
-    con.commit()    
-    cur.close()
-    con.close()
+        raise e
+   
     
 @app.route('/view',methods=['GET','POST'])
 def view():
@@ -49,87 +54,96 @@ def run_view():
         #create a new table
         cur.execute("SELECT * FROM employee")
         con.commit()
-        data = cur.fetchall()
+        data = enumerate(cur.fetchall(),1)
+        con.commit()
+        cur.close()
+        con.close()
         return render_template('view.html',data=data)
+        
+    except db.DatabaseError as e:
+        raise e
+   
+    
+@app.route('/find',methods=['GET','POST'])
+def find():
+    flag ='false'
+    return render_template('search.html',flag=flag)
+    
+@app.route('/run_find',methods=['GET','POST'])
+def run_find():
+    try:
+    
+        #create a connection to database
+        con,cur = tbl_con()
+        qry =  "SELECT * FROM employee where emp_id=%s"
+        Emp_Id = request.form['Emp']
+        data = (Emp_Id,)
+        cur.execute(qry,data)
+        count='true'
+        flag = cur.fetchall()
+        rec = enumerate(flag,1)
+        con.commit()
+        return render_template('search.html',flag=flag,rec=rec,count=count)
     except db.DatabaseError as e:
         print(e)
     con.close()
     cur.close()
     con.close()
     
-# @app.route('/find',methods=['GET','POST'])
-# def find():
-#     try:
+@app.route('/delete',methods=['GET','POST'])
+def delete():
+    flag ='false'
+    return render_template('delete.html',flag=flag)
+@app.route('/run_delete',methods=['GET','POST'])
+def run_delete():
+    try:
+        #create a connection to database
+        con,cur = tbl_con()
+        qry =  "DELETE FROM employee where emp_id=%s"
+        Emp_Id = request.form['Emp']
+        data = (Emp_Id,)
+        cur.execute(qry,data)
+        rm = cur.rowcount
+        flag = 'true'
+        con.commit()
+        cur.close()
+        con.close()
+        return render_template('delete.html',flag=flag,rm=rm)
     
-#         #create a connection to database
-#         con,cur = tbl_con()
-#         qry =  "SELECT * FROM employee where emp_id=%s"
-#         Emp_Id = request.form['Emp']
-#         data = (Emp_Id,)
-#         cur.execute(qry,data)
-#         search = cur
-#         con.commit()
-#         return render_template('view.html',search=search)
-#     except db.DatabaseError as e:
-#         print(e)
-#     con.close()
-#     cur.close()
-#     con.close()
+    except db.DatabaseError as e:
+        print(e)
     
-# @app.route('/delete',methods=['GET','POST'])
-# def delete():
-#     try:
     
-#         #create a connection to database
-#         con,cur = tbl_con()
-#         qry1 =  "DELETE FROM employee where emp_id=%s"
-#         qry2 = "SELECT * FROM employee"
-#         Emp_Id = request.form['Emp']
-#         data = (Emp_Id,)
-#         cur.execute(qry1,data)
-#         rm = cur.rowcount
-#         # con.commit()
-#         cur.execute(qry2)
-#         tbl = cur.fetchall()
-#         con.commit()
-#         return render_template('view.html',rm=rm,tbl=tbl)
+@app.route('/update',methods=['GET','POST'])
+def update():
+    flag ='false'
+    return render_template('update.html',flag=flag)
+@app.route('/run_update',methods=['GET','POST'])
+def run_update():
+    try:
     
-#     except db.DatabaseError as e:
-#         print(e)
-#     con.close()
-#     cur.close()
-#     con.close()
+        #create a connection to database
+        con,cur = tbl_con()
+        qry  =  "UPDATE employee SET Emp_Id=%s,Name=%s,Project=%s,Query=%s where Emp_Id=%s"
+        Emp_Id = request.form['Emp_Id']
+        Name = request.form['Name']
+        Project  = request.form['Project']
+        Query = request.form['Query']
+        Old_Emp_Id = request.form['Old_Emp_Id']
+        data = (Emp_Id,Name,Project,Query,Old_Emp_Id)
+        cur.execute(qry,data)
+        flag = 'true'
+        con.commit()
+        # cur.close() 
+        # con.close()
+        return render_template('update.html',flag=flag)
+    except db.DatabaseError as e:
+        raise e
     
-# @app.route('/update',methods=['GET','POST'])
-# def update():
-#     try:
-    
-#         #create a connection to database
-#         con,cur = tbl_con()
-#         qry1 =  "UPDATE employee SET Emp_Id=%s,Name=%s,Project=%s,Query=%s where Emp_Id=%s"
-#         qry2 = "SELECT * FROM employee"
-#         Emp_Id = request.form['Emp_Id']
-#         Name = request.form['Name']
-#         Project  = request.form['Project']
-#         Query = request.form['Query']
-#         Old_Emp_Id = request.form['Old_Emp_Id']
-#         data = (Emp_Id,Name,Project,Query,Old_Emp_Id)
-    
-#         cur.execute(qry1,data)
-#         cur.execute(qry2)
-#         upi = cur.fetchall()
-#         con.commit()
-        
-#         return render_template('view.html',upi=upi)
-#     except db.DatabaseError as e:
-#         print(e)
-#     con.close()
-#     cur.close()
-#     con.close()
-# @app.errorhandler(HTTPException)
-# def handle_exception(e):
-#     if isinstance(e,HTTPException):
-#         return e
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    if isinstance(e,HTTPException):
+        return e
 
 
     

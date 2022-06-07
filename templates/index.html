@@ -45,9 +45,9 @@
           <li><a class="getstarted scrollto" href="#about" action="">About</a></li>
           <li><a class="nav-link scrollto" href="{{url_for('insert')}}">Raise</a></li>
           <li><a class="nav-link scrollto" href="{{url_for('view')}}">View</a></li>
-          <li><a class="nav-link scrollto" href="#">Update</a></li>
-          <li><a class="nav-link scrollto" href="#">Delete</a></li>
-          <li><a class="nav-link scrollto" href="#">Search</a></li>
+          <li><a class="nav-link scrollto" href="{{url_for('update')}}">Update</a></li>
+          <li><a class="nav-link scrollto" href="{{url_for('delete')}}">Delete</a></li>
+          <li><a class="nav-link scrollto" href="{{url_for('find')}}">Search</a></li>
           <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -129,11 +129,11 @@
           <div class="col-lg-4 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{url_for('insert')}}">Raise</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{url_for('view')}}">View</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{url_for('update')}}">Update</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{url_for('delete')}}">Delete</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{url_for('find')}}">Search</a></li>
             </ul>
           </div>
 

@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block search %}
+{%if count=='true' %}
+    {%if flag==[] %}
+    <div class="alert alert-danger" role="alert">Record's Not Found...</div>
+    {%else%}
+    <div class="alert alert-success" role="alert">Record's Found...</div>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th scope="col">SNo</th>
+            <th scope="col">Emp Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Project</th>
+            <th scope="col">Query</th>
+        </tr>
+        </thead>
+        <tbody>
+    {%for e,d in rec %}
+        <tr>   
+            <th scope="col">{{e}}</th>
+            <th scope="col">{{d[0]}}</th>
+            <th scope="col">{{d[1]}}</th>
+            <th scope="col">{{d[2]}}</th>
+            <th scope="col">{{d[3]}}</th>
+    {%endfor%}
+        </tr>
+    {%endif%}
+
+{%endif%}
+{%if flag=='false' %}
+    <div class="row">  
+        <div class="mx-auto" style="width: 220pt;">
+            <div class="form-group">
+                    
+                <form method="POST" action="{{ url_for('run_find')}}">
+                    
+                    <input type="text" name="Emp" class="form-control" placeholder="Search employee by Emp_Id" required="required"/><br>
+                    
+                    <button type="submit" class="btn btn-primary btn-block btn-block">Search</button>
+    
+                </form>
+            </div>
+        </div>
+
+    </div>
+{%endif%}
+{% endblock search %}

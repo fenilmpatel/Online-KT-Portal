@@ -46,10 +46,10 @@
       
           <li><a class="nav-link scrollto" href="{{url_for('insert')}}">Raise</a></li>
           <li><a class="nav-link scrollto" href="{{url_for('view')}}">View</a></li>
-          <li><a class="nav-link   scrollto" href="#">Update</a></li>
-          <li><a class="nav-link scrollto" href="#">Delete</a></li>
-          <li><a class="nav-link scrollto" href="#">Search</a></li>
-          <li><a class="nav-link scrollto" href="#footer">Contact</a></li>
+          <li><a class="nav-link   scrollto" href="{{url_for('update')}}">Update</a></li>
+          <li><a class="nav-link scrollto"  href="{{url_for('delete')}}">Delete</a></li>
+          <li><a class="nav-link scrollto" href="{{url_for('find')}}">Search</a></li>
+          <li><a class="nav-link scrollto" href="{{url_for('home')}}">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -74,6 +74,9 @@
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
         {% block insert %}{% endblock insert %}
+        {% block update %}{% endblock update %}
+        {% block delete %}{% endblock delete %}
+        {% block search %}{% endblock search %}
         {% block view %}{% endblock view %}
     
       </div>
