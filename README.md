@@ -33,7 +33,7 @@
 - after deployement how to maintain this app on cloud required bit knowledge about cloud.
 ## Process flow and Approach:
 
-![process-flow](https://github.com/fenilmpatel/Online-Knowledge-Transfer-Portal/blob/master/static/assets/img/process-flow.png)
+![process-flow](https://github.com/fenilmpatel/Online-Knowledge-Transfer-Portal/blob/master/static/assets/img/process-flow.jpg/)
 ## Run Locally
 
 Clone the project
