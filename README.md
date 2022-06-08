@@ -11,8 +11,8 @@
 
 ## What Problem Solve ?
 
-- As we are come into corporate life, employee are often put into ongoing projects. employee fill little unknown territory while go to projects meeting. to solve this Problem my portal is very useful.
-- here, employee can go and read previous doubts also they can raise their common doubts and someone from management solve those doubts.
+- As we are come into corporate life, employee are often put into ongoing projects. employee fill little scary about projects to solve this issue portal is very useful.
+- here, employee can go and read previous doubts also they can raise their common recent doubts and management solve those doubts.
  
 ## Goal :
 
